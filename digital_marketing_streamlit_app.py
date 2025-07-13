@@ -564,25 +564,6 @@ with tab6:
         if len(outliers) > 0:
             st.write(f"- Outlier range: {outliers[outlier_metric].min():.2f} to {outliers[outlier_metric].max():.2f}")
             st.write(f"- Normal range: {lower_bound:.2f} to {upper_bound:.2f}")
-    
-    # Performance Insights
-    st.markdown("### 💡 Key Insights")
-    
-    # Calculate insights
-    best_region = filtered_df.groupby('Region')['ROI'].mean().idxmax()
-    best_product = filtered_df.groupby('Product')['ROI'].mean().idxmax()
-    best_channel = filtered_df.groupby('Marketing_Channel')['ROI'].mean().idxmax()
-    
-    insights = [
-        f"🏆 **Best performing region**: {best_region} with {filtered_df.groupby('Region')['ROI'].mean()[best_region]:.2f}x ROI",
-        f"📱 **Top product**: {best_product} generating {filtered_df.groupby('Product')['ROI'].mean()[best_product]:.2f}x ROI",
-        f"📢 **Most effective channel**: {best_channel} with {filtered_df.groupby('Marketing_Channel')['ROI'].mean()[best_channel]:.2f}x ROI",
-        f"💰 **Total investment**: ${filtered_df['Spend'].sum():,.0f} generated ${filtered_df['Revenue'].sum():,.0f} in revenue",
-        f"🎯 **Overall performance**: {(filtered_df['Revenue'].sum() / filtered_df['Spend'].sum()):.2f}x return on investment"
-    ]
-    
-    for insight in insights:
-        st.markdown(f'<div class="insight-box">{insight}</div>', unsafe_allow_html=True)
 
 # Footer
 st.markdown("---")
